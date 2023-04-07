@@ -264,9 +264,9 @@ function! vimwiki#base#resolve_link(link_text, ...) abort
     else
       " append extension iff one not already present or it's not the targeted
       " wiki extension - https://github.com/vimwiki/vimwiki/issues/950
+      " this is modify for ABigBright use only, not official, only add ext when ext == ''
       let ext = fnamemodify(link_text, ':e')
-      let ext_with_dot = '.' . ext
-      if ext ==? '' || ext_with_dot !=? vimwiki#vars#get_wikilocal('ext', link_infos.index)
+      if ext ==? ''  " append ext iff one not already present
         let link_infos.filename .= vimwiki#vars#get_wikilocal('ext', link_infos.index)
       endif
     endif
